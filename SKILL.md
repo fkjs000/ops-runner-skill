@@ -24,20 +24,33 @@ Proceed only if `True`.
 
 ## Install / enable ops-runner (local)
 
-1) Confirm plugin files exist:
+### Step 0 — Install / update plugin source from GitHub (non-privileged)
+Use the bundled installer script:
+
+- `scripts/install_ops_runner_from_github.sh`
+
+Example:
+- `./scripts/install_ops_runner_from_github.sh --repo git@github.com:fkjs000/ops-runner.git --backup-and-replace`
+
+Behavior:
+- If the destination is already a git repo → `fetch + pull --ff-only`
+- If the destination exists but is NOT a git repo → **refuse** by default
+  - With `--backup-and-replace` it will move it to `ops-runner.bak.<timestamp>` then clone.
+
+### Step 1 — Confirm plugin files exist
 - `~/.openclaw/workspace/.openclaw/extensions/ops-runner/openclaw.plugin.json`
 - `~/.openclaw/workspace/.openclaw/extensions/ops-runner/index.ts`
 
-2) Enable plugin (writes config):
+### Step 2 — Enable plugin (config write; treat as privileged)
 - `openclaw plugins enable ops-runner`
 
-3) Allow optional tools for agent `main` (config change):
+### Step 3 — Allow tools for agent `main` (config write; treat as privileged)
 - ensure `agents.list[id=main].tools.allow` contains `"ops-runner"`
 
-4) (Optional but recommended) Create workspace scripts directory (auditable):
+### Step 4 — (Optional) Create workspace scripts directory (auditable)
 - `$HOME/.openclaw/workspace/scripts/ops-runner/`
 
-5) (L3) Apply code changes safely:
+### Step 5 — Restart Gateway (privileged)
 - `rm -rf /tmp/jiti/`
 - `systemctl --user restart openclaw-gateway.service`
 
