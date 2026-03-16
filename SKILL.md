@@ -24,18 +24,24 @@ Proceed only if `True`.
 
 ## Install / enable ops-runner (local)
 
-### Step 0 — Install / update plugin source from GitHub (non-privileged)
-Use the bundled installer script:
+### Step 0 — Install / update plugin source (non-privileged)
+Choose ONE:
 
+A) From GitHub
 - `scripts/install_ops_runner_from_github.sh`
+- Example:
+  - `./scripts/install_ops_runner_from_github.sh --repo git@github.com:fkjs000/ops-runner.git --backup-and-replace`
 
-Example:
-- `./scripts/install_ops_runner_from_github.sh --repo git@github.com:fkjs000/ops-runner.git --backup-and-replace`
+B) From local path
+- `scripts/install_ops_runner_from_local.sh`
+- Example (copy):
+  - `./scripts/install_ops_runner_from_local.sh --src /path/to/ops-runner --backup-and-replace`
+- Example (link):
+  - `./scripts/install_ops_runner_from_local.sh --src /path/to/ops-runner --backup-and-replace --link`
 
-Behavior:
-- If the destination is already a git repo → `fetch + pull --ff-only`
-- If the destination exists but is NOT a git repo → **refuse** by default
-  - With `--backup-and-replace` it will move it to `ops-runner.bak.<timestamp>` then clone.
+Safety behavior:
+- If dest exists but is NOT a git repo → **refuse** by default
+  - With `--backup-and-replace` it will move it to `ops-runner.bak.<timestamp>` then install
 
 ### Step 1 — Confirm plugin files exist
 - `~/.openclaw/workspace/.openclaw/extensions/ops-runner/openclaw.plugin.json`
