@@ -1,6 +1,6 @@
 ---
 name: ops-runner-manager
-description: Install/enable the local ops-runner plugin and manage ops-runner jobs (kickoff/status/journal) + convert cron jobs to kickoff-only. Triggers: kickoff, ops-runner, 產生報告, 定期報告. Use when user asks to install ops-runner, add/modify/delete ops-runner tasks, or migrate a long cron job to systemd-run via ops-runner.
+description: "Install/enable the local ops-runner plugin and manage ops-runner jobs (kickoff/status/journal) + convert cron jobs to kickoff-only. Triggers: kickoff, ops-runner, 產生報告, 定期報告. Use when user asks to install ops-runner, add/modify/delete ops-runner tasks, or migrate a long cron job to systemd-run via ops-runner."
 ---
 
 # ops-runner manager
